@@ -1,0 +1,218 @@
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 375px;
+  --card-width: calc(var(--card-height) / 1.4);
+  --reply-width: calc(var(--card-width) / 1.1);
+  --request-width: calc(var(--card-width) / 1.2);
+}
+
+body {
+  /* min-height: 100vh; */
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+  box-sizing: border-box;
+}
+
+.ai-container {
+  /* background: #191c29; */
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  /* justify-content: c; */
+  align-items: center;
+  /* text-align: center; */
+  flex-direction: column;
+  display: flex;
+  /* font-size: 1.5em; */
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.ai-container:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.ai-container:hover:before, .ai-container:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+.ai-container::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.ai-container::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+.ai-hello h1 {
+  color: rgb(255, 255, 255);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.ai-request {
+  width: var(--request-width);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: none;
+  color: rgb(247, 247, 247);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 1s;
+}
+.ai-request:hover {
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+}
+
+.ai-reply{
+  width: var(--reply-width);
+  height: calc(var(--card-height) / 1.8);
+  background: rgba(0, 0, 0, 0.11);
+  border-radius: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all 1s;
+}
+.ai-reply div{
+  width: 100%;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.ai-reply div:first-child {
+  color:rgb(52, 255, 25)
+}
+.ai-reply div:last-child {
+  color:rgb(52, 255, 25)
+}
+.ai-reply div:last-child::before {
+  content: '> '
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.ai-send--btn {
+  /* Variables */
+ --button_radius: 0.75em;
+ --button_color: #e8e8e8;
+ --button_outline_color: black;
+ font-size: 14px;
+ font-weight: bold;
+ border: none;
+ border-radius: var(--button_radius);
+ background: var(--button_outline_color);
+ margin: 15px 15px 5px;
+}
+
+.button_top {
+ display: block;
+ box-sizing: border-box;
+ border: 2px solid var(--button_outline_color);
+ border-radius: var(--button_radius);
+ padding: 0.75em 1.5em;
+ background: var(--button_color);
+ color: var(--button_outline_color);
+ transform: translateY(-0.2em);
+ transition: transform 0.1s ease;
+}
+
+.ai-send--btn:hover .button_top {
+  /* Pull the button upwards when hovered */
+ transform: translateY(-0.33em);
+}
+
+.ai-send--btn:active .button_top {
+  /* Push the button downwards when pressed */
+ transform: translateY(0);
+}
+
+
+.ai-foot--btn {
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  border: 2px solid black;
+  background-color: white;
+  color: white;
+  position: relative;
+  letter-spacing: 1px;
+}
+ 
+.ai-foot--btn::before {
+  content: 'Clear';
+  /*Button's value/text-content */
+  position: absolute;
+  top: -14%;
+  left: 7%;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.15s ease-in-out;
+  font-weight: bold;
+}
+
+.ai-foot--btn:hover::before {
+  top: 0;
+  left: 0;
+}
+
+.ai-info {
+  padding-top: 30px;
+  font-size: 18px;
+  color: white;
+}
+
